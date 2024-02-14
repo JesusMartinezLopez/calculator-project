@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let displayValue = '0';
   let firstNumber = '';
   let operator = '';
+  let complete = false;
 
   function updateDisplay() {
       document.getElementById('screen').value = displayValue;
@@ -10,6 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
   function addNumber(number) {
       if (displayValue === '0') {
           displayValue = '';
+      }
+      if (complete) {
+        displayValue = '';
+        complete = false;
       }
       displayValue += number.toString();
       updateDisplay();
@@ -23,9 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function setOperator(op) {
-      if (firstNumber !== '') {
-          operate();
-      }
+      if (firstNumber == '') 
       firstNumber = displayValue;
       operator = op;
       displayValue = '';
@@ -64,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       firstNumber = '';
       operator = '';
+      complete = true;
   }
 
   function clearDisplay() {
