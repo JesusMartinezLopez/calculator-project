@@ -36,13 +36,14 @@ main {
     max-width: 340px;
     box-shadow: 0 0 75px 30px rgba(216, 216, 216, 0.9);
     margin-top: 100px;
+    margin-bottom: 100px;
     font-family: 'Roboto', sans-serif;
 }
 
 .screen {
     background-color: transparent;
     cursor: default;
-    width: 90%;
+    width: 94%;
     border: none;
     padding: 10px;
     color: rgba(255, 255, 255, 0.7);
