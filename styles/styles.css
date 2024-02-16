@@ -10,7 +10,7 @@ body {
     height: 100vh;
     margin: 0;
     padding: 0;
-    background: #8b9da9;
+    background: #7f909b;
 }
 
 header {
@@ -18,7 +18,7 @@ header {
 }
 
 header h1 {
-    font-size: 58px;
+    font-size: 64px;
     font-family: 'Calculator','monospace';
     text-align: center;
     text-transform: uppercase;
@@ -34,7 +34,7 @@ main {
 
 .container {
     max-width: 340px;
-    box-shadow: 0 0 75px 30px rgba(205, 205, 205, 0.9);
+    box-shadow: 0 0 75px 30px rgba(216, 216, 216, 0.9);
     margin-top: 100px;
     font-family: 'Roboto', sans-serif;
 }
