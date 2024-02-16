@@ -7,11 +7,14 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateDisplay() {
         const screen = document.getElementById('screen');
         screen.value = displayValue;
-
-        if (displayValue.length > 8) {
-            screen.style.fontSize = '1.67em';
+    
+        const maxLength = 8; // Maximum number of characters to display before adjusting font size
+        const fontSize = '4em'; // Standard font size
+    
+        if (displayValue.length > maxLength) {
+            screen.style.fontSize = '1.67em'; // Adjust font size when length exceeds threshold
         } else {
-            screen.style.fontSize = '4em';
+            screen.style.fontSize = fontSize; // Use standard font size
         }
     }
 
@@ -32,16 +35,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function setOperator(opButton) {
-        if (firstNumber === '') {
+        if (firstNumber !== '' && operator !== '' && displayValue !== '') {
+            operate();
+            displayValue = firstNumber;
+            updateDisplay();
+        } else if (firstNumber === '') {
             firstNumber = displayValue;
-            complete = false;
+            displayValue = '';
         }
+    
         operator = opButton.value;
-        displayValue = '';
         updateDisplay();
+    
         document.querySelectorAll('.operator').forEach(button => {
             button.classList.remove('active');
         });
+    
         opButton.classList.add('active');
     }
 
@@ -49,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const num1 = parseFloat(firstNumber);
         const num2 = parseFloat(displayValue);
         let result;
-
+    
         switch (operator) {
             case '+':
                 result = num1 + num2;
@@ -71,15 +80,15 @@ document.addEventListener('DOMContentLoaded', function() {
             default:
                 return;
         }
-
-        displayValue = result.toFixed(2);
+    
+        displayValue = result;
         updateDisplay();
-
-        firstNumber = '';
+    
+        firstNumber = displayValue;
         operator = '';
         complete = true;
     }
-
+    
     function clearDisplay() {
         displayValue = '0';
         firstNumber = '';
@@ -107,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (value === '+' || value === '-' || value === '*' || value === '/') {
             setOperator(event.target);
         } else if (value === '=') {
-            if (operator !== '' && displayValue !== '') { 
+            if (operator !== '' && displayValue !== '') {
                 operate();
             }
         } else if (value === 'CLEAR') {
@@ -131,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (key === '+' || key === '-' || key === '*' || key === '/') {
             setOperator(document.querySelector(`button[value="${key}"]`));
         } else if (key === '=') {
-            if (operator !== '' && displayValue !== '') { 
+            if (operator !== '' && displayValue !== '') {
                 operate();
             }
         } else if (key === 'Enter') {
