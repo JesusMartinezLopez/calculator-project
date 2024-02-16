@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-
     function addNumber(number) {
         if (displayValue === '0' || complete) {
             displayValue = '';
@@ -32,14 +31,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function setOperator(op) {
+    function setOperator(opButton) {
         if (firstNumber === '') {
             firstNumber = displayValue;
             complete = false;
         }
-        operator = op;
+        operator = opButton.value;
         displayValue = '';
         updateDisplay();
+        document.querySelectorAll('.operator').forEach(button => {
+            button.classList.remove('active');
+        });
+        opButton.classList.add('active');
     }
 
     function operate() {
@@ -82,6 +85,9 @@ document.addEventListener('DOMContentLoaded', function() {
         firstNumber = '';
         operator = '';
         updateDisplay();
+        document.querySelectorAll('.operator').forEach(button => {
+            button.classList.remove('active');
+        });
     }
 
     function deleteDigit() {
@@ -99,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (value === '.') {
             addPoint();
         } else if (value === '+' || value === '-' || value === '*' || value === '/') {
-            setOperator(value);
+            setOperator(event.target);
         } else if (value === '=') {
             if (operator !== '' && displayValue !== '') { 
                 operate();
@@ -108,6 +114,11 @@ document.addEventListener('DOMContentLoaded', function() {
             clearDisplay();
         } else if (value === 'DEL') {
             deleteDigit();
+        }
+        if (!isNaN(value) || value === '.' || value === '=' || value === 'CLEAR' || value === 'DEL') {
+            document.querySelectorAll('.operator').forEach(button => {
+                button.classList.remove('active');
+            });
         }
     }
 
@@ -118,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (key === '.') {
             addPoint();
         } else if (key === '+' || key === '-' || key === '*' || key === '/') {
-            setOperator(key);
+            setOperator(document.querySelector(`button[value="${key}"]`));
         } else if (key === '=') {
             if (operator !== '' && displayValue !== '') { 
                 operate();
@@ -132,8 +143,12 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (key === 'Escape') {
             clearDisplay();
         }
+        if (!isNaN(key) || key === '.' || key === '=' || key === 'Enter' || key === 'Backspace' || key === 'Escape') {
+            document.querySelectorAll('.operator').forEach(button => {
+                button.classList.remove('active');
+            });
+        }
     }
-    
 
     const buttons = document.querySelectorAll('.button-zone button');
     buttons.forEach(button => {
