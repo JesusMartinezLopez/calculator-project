@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     let displayValue = '0';
     let firstNumber = '';
     let operator = '';
@@ -7,14 +7,14 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateDisplay() {
         const screen = document.getElementById('screen');
         screen.value = displayValue;
-
-        const maxLength = 8; // Maximum number of characters to display before adjusting font size
-        const fontSize = '4em'; // Standard font size
-
+    
+        const maxLength = 8;
+        const fontSize = '4em';
+    
         if (displayValue.length > maxLength) {
-            screen.style.fontSize = '1.67em'; // Adjust font size when length exceeds threshold
+            screen.style.fontSize = '1.67em';
         } else {
-            screen.style.fontSize = fontSize; // Use standard font size
+            screen.style.fontSize = fontSize;
         }
     }
 
@@ -43,14 +43,14 @@ document.addEventListener('DOMContentLoaded', function () {
             firstNumber = displayValue;
             displayValue = '';
         }
-
+    
         operator = opButton.value;
         updateDisplay();
-
+    
         document.querySelectorAll('.operator').forEach(button => {
             button.classList.remove('active');
         });
-
+    
         opButton.classList.add('active');
     }
 
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const num1 = parseFloat(firstNumber);
         const num2 = parseFloat(displayValue);
         let result;
-
+    
         switch (operator) {
             case '+':
                 result = num1 + num2;
@@ -80,15 +80,15 @@ document.addEventListener('DOMContentLoaded', function () {
             default:
                 return;
         }
-
+    
         displayValue = result;
         updateDisplay();
-
+    
         firstNumber = displayValue;
         operator = '';
         complete = true;
     }
-
+    
     function clearDisplay() {
         displayValue = '0';
         firstNumber = '';
