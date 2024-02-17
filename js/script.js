@@ -84,12 +84,9 @@ document.addEventListener('DOMContentLoaded', function () {
         displayValue = result;
         updateDisplay();
 
-        // firstNumber = displayValue;
+        firstNumber = displayValue;
         operator = '';
         complete = true;
-        firstNumber = ''
-        console.log(firstNumber)
-        console.log(displayValue)
     }
 
     function clearDisplay() {
