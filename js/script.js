@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     let displayValue = '0';
     let firstNumber = '';
     let operator = '';
@@ -7,10 +7,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateDisplay() {
         const screen = document.getElementById('screen');
         screen.value = displayValue;
-    
+
         const maxLength = 8; // Maximum number of characters to display before adjusting font size
         const fontSize = '4em'; // Standard font size
-    
+
         if (displayValue.length > maxLength) {
             screen.style.fontSize = '1.67em'; // Adjust font size when length exceeds threshold
         } else {
@@ -43,14 +43,14 @@ document.addEventListener('DOMContentLoaded', function() {
             firstNumber = displayValue;
             displayValue = '';
         }
-    
+
         operator = opButton.value;
         updateDisplay();
-    
+
         document.querySelectorAll('.operator').forEach(button => {
             button.classList.remove('active');
         });
-    
+
         opButton.classList.add('active');
     }
 
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const num1 = parseFloat(firstNumber);
         const num2 = parseFloat(displayValue);
         let result;
-    
+
         switch (operator) {
             case '+':
                 result = num1 + num2;
@@ -80,15 +80,18 @@ document.addEventListener('DOMContentLoaded', function() {
             default:
                 return;
         }
-    
+
         displayValue = result;
         updateDisplay();
-    
-        firstNumber = displayValue;
+
+        // firstNumber = displayValue;
         operator = '';
         complete = true;
+        firstNumber = ''
+        console.log(firstNumber)
+        console.log(displayValue)
     }
-    
+
     function clearDisplay() {
         displayValue = '0';
         firstNumber = '';
